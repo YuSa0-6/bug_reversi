@@ -62,7 +62,7 @@ module ReversiMethods
 
   def turn(board, target_pos, attack_stone_color, direction)
     return false if target_pos.out_of_board?
-    return false if target_pos.stone_color(board) == attack_stone_color 
+    return false if target_pos.stone_color(board) == attack_stone_color
     return false if target_pos.stone_color(board) == BLANK_CELL
 
     next_pos = target_pos.next_position(direction)
@@ -77,7 +77,7 @@ module ReversiMethods
   def finished?(board)
     return true if !placeable?(board, WHITE_STONE) && !placeable?(board, BLACK_STONE)
     return true if count_stone(board, WHITE_STONE) + count_stone(board, BLACK_STONE) == 64
-    return true if count_stone(board, WHITE_STONE) == 0 || count_stone(board, BLACK_STONE) == 0
+    return true if count_stone(board, WHITE_STONE).zero? || count_stone(board, BLACK_STONE).zero?
   end
 
   def placeable?(board, attack_stone_color)
