@@ -75,7 +75,9 @@ module ReversiMethods
   end
 
   def finished?(board)
-    return true if !placeable?(board, WHITE_STONE) && !placeable?(board, BLACK_STONE) || count_stone(board, WHITE_STONE) + count_stone(board, BLACK_STONE) == 64
+    return true if !placeable?(board, WHITE_STONE) && !placeable?(board, BLACK_STONE)
+    return true if count_stone(board, WHITE_STONE) + count_stone(board, BLACK_STONE) == 64
+    return true if count_stone(board, WHITE_STONE) == 0 || count_stone(board, BLACK_STONE) == 0
   end
 
   def placeable?(board, attack_stone_color)
