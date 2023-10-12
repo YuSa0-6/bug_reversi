@@ -76,16 +76,18 @@ module ReversiMethods
 
   def finished?(board)
     return true if !placeable?(board, WHITE_STONE) && !placeable?(board, BLACK_STONE)
-    return true if count_stone(board, WHITE_STONE) + count_stone(board, BLACK_STONE) == 64
-    return true if count_stone(board, WHITE_STONE).zero? || count_stone(board, BLACK_STONE).zero?
   end
 
   def placeable?(board, attack_stone_color)
+    return false if count_stone(board, WHITE_STONE) + count_stone(board, BLACK_STONE) == 64
+    return false if count_stone(board, WHITE_STONE).zero? || count_stone(board, BLACK_STONE).zero?
+
     board.each_with_index do |cols, row|
       cols.each_with_index do |cell, col|
         next unless cell == BLANK_CELL
 
         position = Position.new(row, col)
+
         return true if put_stone(board, position.to_cell_ref, attack_stone_color, dry_run: true)
       end
     end
